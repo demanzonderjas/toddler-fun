@@ -29,7 +29,7 @@ class KeyboardStore {
 
 	get activeNumber(): number {
 		const number = this.history.slice().reverse().find(isKeyNumber);
-		return number !== undefined ? +number : 0;
+		return number !== undefined ? +number : 1;
 	}
 
 	get previousKey() {
@@ -59,7 +59,6 @@ class KeyboardStore {
 		const history = [...this.history];
 		history[numberIdx] = ((number || 1) - 1).toString();
 		this.history = history;
-		console.log(history);
 	}
 
 	stopListening() {

@@ -9,7 +9,6 @@ export const Counter: React.FC = observer(() => {
 	const canvas = useCanvas();
 
 	useEffect(() => {
-		console.log("rerender", activeNumber);
 		if (activeNumber == 0) {
 			canvas.clearCanvas();
 		} else {
