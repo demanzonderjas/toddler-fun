@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
 import { useEffect } from "react";
-import { modelDictionary } from "../data/models/dictionary";
-import { useCanvas } from "../stores/CanvasStore";
-import { useKeyboard } from "../stores/KeyboardStore";
+import { modelDictionary } from "../../data/models/dictionary";
+import { useCanvas } from "../../stores/CanvasStore";
+import { useKeyboard } from "../../stores/KeyboardStore";
 
 export const Counter: React.FC = observer(() => {
 	const { activeLetter, activeNumber } = useKeyboard();

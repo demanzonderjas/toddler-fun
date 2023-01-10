@@ -1,17 +1,20 @@
-import { ActiveKeyDisplay } from "../components/ActiveKeyDisplay";
 import { Canvas } from "../components/Canvas";
-import { Counter } from "../components/Counter";
+import { LettersAndNumbers } from "../components/letters-numbers/LettersAndNumbers";
+import { Menu } from "../components/Menu";
 import { canvas, CanvasContext } from "../stores/CanvasStore";
 import { keyboard, KeyboardContext } from "../stores/KeyboardStore";
+import { nav, NavigationContext } from "../stores/NavigationStore";
 
 export default function Home() {
 	return (
-		<KeyboardContext.Provider value={keyboard}>
-			<CanvasContext.Provider value={canvas}>
-				<ActiveKeyDisplay />
-				<Canvas />
-				<Counter />
-			</CanvasContext.Provider>
-		</KeyboardContext.Provider>
+		<NavigationContext.Provider value={nav}>
+			<KeyboardContext.Provider value={keyboard}>
+				<CanvasContext.Provider value={canvas}>
+					<Menu />
+					<Canvas />
+					<LettersAndNumbers />
+				</CanvasContext.Provider>
+			</KeyboardContext.Provider>
+		</NavigationContext.Provider>
 	);
 }
