@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.ActiveKeyDisplay {
+	padding: 40px 80px;
+	background-color: $primary;
+	width: 100%;
+	justify-content: center;
+	font-size: 100px;
+	display: inline-flex;
+	color: white;
+	text-transform: uppercase;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
