@@ -6,6 +6,7 @@ export type TCanvasImage = {
 	image?: HTMLImageElement;
 	x?: number;
 	y?: number;
+	order?: number;
 };
 
 export type TDimension = {

@@ -19,6 +19,7 @@ class CanvasStore {
 			addModel: action.bound,
 			resize: action.bound,
 			clearModels: action.bound,
+			replaceModel: action.bound,
 		});
 	}
 
@@ -34,18 +35,24 @@ class CanvasStore {
 		this.draw();
 	}
 
+	getModelIndex(modelName: string) {
+		return this.models.findIndex((m) => m.name === modelName);
+	}
+
+	replaceModel(model: TCanvasImage, index: number) {
+		this.models[index] = model;
+		this.draw();
+	}
+
 	draw() {
 		if (!this.ctx || !this.models.length) {
 			return;
 		}
 		this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
-		const positions = getCenteredPositions(this.canvas!, this.models.length, {
-			width: this.models[0].width!,
-			height: this.models[0].height!,
-		});
-		this.models.forEach((model, idx) => {
+		const sorted = this.models.sort((a, b) => b.order! - a.order!);
+		sorted.forEach((model, idx) => {
 			if (model.image) {
-				this.ctx!.drawImage(model.image, positions[idx].x, positions[idx].y, model.width!, model.height!);
+				this.ctx!.drawImage(model.image, model.x!, model.y!, model.width!, model.height!);
 			}
 		});
 	}

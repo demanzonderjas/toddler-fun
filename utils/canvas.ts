@@ -3,7 +3,8 @@ import { TCanvasImage, TDimension, TPosition } from "../typings/canvas";
 export const getCenteredPositions = (canvas: HTMLCanvasElement, total: number, dimensions: TDimension) => {
 	const positions: TPosition[] = [];
 	const gapSize = 20;
-	const maxItemsPerRow = Math.min(total, (canvas.width / (dimensions.width + gapSize)) | 0);
+	const padding = 100;
+	const maxItemsPerRow = Math.min(total, ((canvas.width - padding) / (dimensions.width + gapSize)) | 0);
 	const totalRows = Math.ceil(total / maxItemsPerRow);
 	const startingYPoint = canvas.height / 2 - (totalRows / 2) * (dimensions.height + gapSize / 2) - gapSize / 2;
 	const startingXPoint = canvas.width / 2 - maxItemsPerRow * ((dimensions.width + gapSize) / 2) + gapSize / 2;
@@ -43,4 +44,34 @@ export const loadImage = (model: TCanvasImage, callback: Function) => {
 		callback({ ...model, width, height, image });
 	};
 	image.src = model.src;
+};
+
+export const calcNewModelPosition = (model: TCanvasImage, activeKey: string): TCanvasImage => {
+	const MOVE_SPEED = 128;
+
+	if (activeKey === "ArrowLeft") {
+		return { ...model, x: model.x! - MOVE_SPEED };
+	} else if (activeKey === "ArrowRight") {
+		return { ...model, x: model.x! + MOVE_SPEED };
+	} else if (activeKey === "ArrowUp") {
+		return { ...model, y: model.y! - MOVE_SPEED };
+	} else if (activeKey === "ArrowDown") {
+		return { ...model, y: model.y! + MOVE_SPEED };
+	} else {
+		return model;
+	}
+};
+
+export const calcCenterBottomPosition = (canvas: HTMLCanvasElement, dimensions: TDimension): TPosition => {
+	const y = canvas.height - 1.5 * dimensions.height;
+	const x = canvas.width / 2 - dimensions.width / 2;
+	return { x, y };
+};
+
+export const calcRandomPosition = (canvas: HTMLCanvasElement, dimensions: TDimension): TPosition => {
+	const TOP_BARRIER = 160;
+
+	const y = Math.random() * (canvas.height - TOP_BARRIER - dimensions.height) + TOP_BARRIER;
+	const x = Math.random() * (canvas.width - dimensions.width);
+	return { x, y };
 };

@@ -4,6 +4,7 @@ import { menuItems } from "../data/menu";
 import styles from "../styles/components/Menu.module.scss";
 import cx from "classnames";
 import { useNavigation } from "../stores/NavigationStore";
+import { TMenuItemID } from "../typings/navigation";
 
 export const Menu: React.FC = observer(() => {
 	const [isActive, setIsActive] = useState(false);
@@ -15,6 +16,7 @@ export const Menu: React.FC = observer(() => {
 				<img
 					src={isActive ? "menu/close.png" : "menu/hamburger.png"}
 					alt="menu"
+					style={{ filter: activeMenuItem === TMenuItemID.LettersAndNumbers ? "invert(100)" : undefined }}
 					onClick={() => setIsActive(!isActive)}
 				/>
 			</div>

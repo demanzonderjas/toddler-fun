@@ -1,9 +1,9 @@
-import { action, computed, makeAutoObservable, observable } from "mobx";
-import { createContext, useContext, useEffect } from "react";
+import { action, makeAutoObservable } from "mobx";
+import { createContext, useContext } from "react";
 import { TMenuItemID } from "../typings/navigation";
 
 class NavigationStore {
-	activeMenuItem: TMenuItemID = TMenuItemID.LettersAndNumbers;
+	activeMenuItem: TMenuItemID = TMenuItemID.Frogger;
 
 	constructor() {
 		makeAutoObservable(this, {

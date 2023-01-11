@@ -19,7 +19,7 @@ export const Counter: React.FC = observer(() => {
 		});
 
 		for (let i = 0; i < totalToAdd; i++) {
-			canvas.addModel({ ...model, x: positions[i].x, y: positions[i].y });
+			canvas.addModel({ ...model, x: positions[i].x, y: positions[i].y, order: 0 });
 		}
 	};
 

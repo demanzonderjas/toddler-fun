@@ -9,3 +9,7 @@ export const isKeyAlphabetCharacter = (activeKey: string | null) => {
 export const isKeyBackspace = (activeKey: string | null) => {
 	return activeKey === null ? false : activeKey === "Backspace";
 };
+
+export const isArrowKey = (activeKey: string | null) => {
+	return activeKey === null ? false : activeKey.slice(0, 5) === "Arrow";
+};
