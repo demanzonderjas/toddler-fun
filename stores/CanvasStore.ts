@@ -1,6 +1,6 @@
 import { action, computed, makeAutoObservable, observable, toJS } from "mobx";
 import { createContext, useContext, useEffect } from "react";
-import { TCanvasImage } from "../typings/canvas";
+import { TCanvasImage, TPosition } from "../typings/canvas";
 import { calculateAspectRatioFit, getCenteredPositions } from "../utils/canvas";
 
 class CanvasStore {
@@ -8,15 +8,17 @@ class CanvasStore {
 
 	models: TCanvasImage[] = [];
 
+	positions: TPosition[] = [];
+
 	MAX_IMAGE_SIZE_PX: number = 250;
 
 	constructor() {
 		makeAutoObservable(this, {
 			models: observable,
 			ctx: computed,
-			addImage: action.bound,
+			addModel: action.bound,
 			resize: action.bound,
-			clearImages: action.bound,
+			clearModels: action.bound,
 		});
 	}
 
@@ -27,11 +29,9 @@ class CanvasStore {
 		return this.canvas.getContext("2d");
 	}
 
-	addImage(model: TCanvasImage, number: number) {
-		for (let i = 0; i < number; i++) {
-			this.models.push(model);
-		}
-		this.loadImage(model);
+	addModel(model: TCanvasImage) {
+		this.models.push(model);
+		this.draw();
 	}
 
 	draw() {
@@ -40,12 +40,12 @@ class CanvasStore {
 		}
 		this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
 		const positions = getCenteredPositions(this.canvas!, this.models.length, {
-			width: this.models[0].width,
-			height: this.models[0].height,
+			width: this.models[0].width!,
+			height: this.models[0].height!,
 		});
 		this.models.forEach((model, idx) => {
 			if (model.image) {
-				this.ctx!.drawImage(model.image, positions[idx].x, positions[idx].y, model.width, model.height);
+				this.ctx!.drawImage(model.image, positions[idx].x, positions[idx].y, model.width!, model.height!);
 			}
 		});
 	}
@@ -56,25 +56,8 @@ class CanvasStore {
 		}
 	}
 
-	clearImages() {
+	clearModels() {
 		this.models = [];
-	}
-
-	loadImage(model: TCanvasImage) {
-		const image = new Image();
-		image.onload = () => {
-			this.models = this.models.map((_model) => {
-				const { width, height } = calculateAspectRatioFit(
-					image.width,
-					image.height,
-					this.MAX_IMAGE_SIZE_PX,
-					this.MAX_IMAGE_SIZE_PX
-				);
-				return _model.name === model.name ? { ..._model, image, width, height } : _model;
-			});
-			this.draw();
-		};
-		image.src = model.src;
 	}
 
 	setCanvas(canvas: HTMLCanvasElement | null) {

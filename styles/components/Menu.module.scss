@@ -26,6 +26,7 @@ $menu-item-height: 180px;
 		img {
 			max-width: 60%;
 			max-height: 60%;
+			filter: invert(100);
 		}
 
 		&:hover {

@@ -9,7 +9,7 @@ export const Canvas: React.FC = observer(() => {
 	const { activeMenuItem } = useNavigation();
 
 	useEffect(() => {
-		canvas.clearImages();
+		canvas.clearModels();
 		canvas.clearCanvas();
 	}, [activeMenuItem]);
 

@@ -1,4 +1,4 @@
-import { TDimension, TPosition } from "../typings/canvas";
+import { TCanvasImage, TDimension, TPosition } from "../typings/canvas";
 
 export const getCenteredPositions = (canvas: HTMLCanvasElement, total: number, dimensions: TDimension) => {
 	const positions: TPosition[] = [];
@@ -28,4 +28,19 @@ export const calculateAspectRatioFit = (srcWidth: number, srcHeight: number, max
 		width: srcWidth * ratio,
 		height: srcHeight * ratio,
 	};
+};
+
+export const loadImage = (model: TCanvasImage, callback: Function) => {
+	const image = new Image();
+	const MAX_IMAGE_SIZE_PX = 250;
+	image.onload = () => {
+		const { width, height } = calculateAspectRatioFit(
+			image.width,
+			image.height,
+			MAX_IMAGE_SIZE_PX,
+			MAX_IMAGE_SIZE_PX
+		);
+		callback({ ...model, width, height, image });
+	};
+	image.src = model.src;
 };
