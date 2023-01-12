@@ -17,9 +17,9 @@ export const Target: React.FC = observer(() => {
 	};
 
 	useEffect(() => {
-		if (score > 0) {
-			const targetIndex = canvas.getModelIndex("Target");
-			const target = canvas.models[targetIndex];
+		const targetIndex = canvas.getModelIndex("Target");
+		const target = canvas.models[targetIndex];
+		if (score > 0 && target) {
 			const snake = canvas.getModel("Snake");
 			const { x, y } = calcRandomPosition(canvas.canvas, target, [snake]);
 			canvas.replaceModel({ ...target, x, y }, targetIndex);

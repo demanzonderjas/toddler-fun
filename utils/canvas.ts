@@ -73,6 +73,10 @@ export const calcRandomPosition = (
 	model: TCanvasImage,
 	exclusions: TCanvasImage[]
 ): TPosition => {
+	if (!model) {
+		return { x: 0, y: 0 };
+	}
+
 	const TOP_BARRIER = 160;
 
 	const y = Math.random() * (canvas.height - TOP_BARRIER - model.height) + TOP_BARRIER;
