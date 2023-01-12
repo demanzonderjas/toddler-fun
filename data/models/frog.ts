@@ -7,7 +7,7 @@ export const frogModel: TCanvasImage = {
 };
 
 export const targetModel: TCanvasImage = {
-	src: "dictionary/speculoos.jpeg",
+	src: "frogger/speculoos.jpg",
 	name: "Target",
 	order: 1,
 };

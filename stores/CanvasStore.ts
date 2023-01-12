@@ -39,6 +39,10 @@ class CanvasStore {
 		return this.models.findIndex((m) => m.name === modelName);
 	}
 
+	getModel(modelName: string) {
+		return this.models.find((m) => m.name === modelName);
+	}
+
 	replaceModel(model: TCanvasImage, index: number) {
 		this.models[index] = model;
 		this.draw();

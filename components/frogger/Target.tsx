@@ -11,7 +11,8 @@ export const Target: React.FC = observer(() => {
 	const { score } = useFrogger();
 
 	const addModelToCanvas = (model: TCanvasImage) => {
-		const position = calcRandomPosition(canvas.canvas!, { width: model.width!, height: model.height! });
+		const frog = canvas.getModel("Frog");
+		const position = calcRandomPosition(canvas.canvas!, model, [frog!]);
 		canvas.addModel({ ...model, ...position });
 	};
 
@@ -19,17 +20,15 @@ export const Target: React.FC = observer(() => {
 		if (score > 0) {
 			const targetIndex = canvas.getModelIndex("Target");
 			const target = canvas.models[targetIndex];
-			const { x, y } = calcRandomPosition(canvas.canvas!, {
-				width: target.width!,
-				height: target.height!,
-			});
+			const frog = canvas.getModel("Frog");
+			const { x, y } = calcRandomPosition(canvas.canvas!, target, [frog!]);
 			canvas.replaceModel({ ...target, x, y }, targetIndex);
 		}
 	}, [score]);
 
 	useEffect(() => {
 		if (canvas.models.length === 1) {
-			loadImage(targetModel, addModelToCanvas);
+			loadImage(targetModel, addModelToCanvas, 150);
 		}
 	}, [canvas.models.length]);
 

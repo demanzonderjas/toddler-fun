@@ -1,4 +1,5 @@
 import { TCanvasImage, TDimension, TPosition } from "../typings/canvas";
+import { calcIsColliding } from "./frogger";
 
 export const getCenteredPositions = (canvas: HTMLCanvasElement, total: number, dimensions: TDimension) => {
 	const positions: TPosition[] = [];
@@ -31,9 +32,8 @@ export const calculateAspectRatioFit = (srcWidth: number, srcHeight: number, max
 	};
 };
 
-export const loadImage = (model: TCanvasImage, callback: Function) => {
+export const loadImage = (model: TCanvasImage, callback: Function, MAX_IMAGE_SIZE_PX = 250) => {
 	const image = new Image();
-	const MAX_IMAGE_SIZE_PX = 250;
 	image.onload = () => {
 		const { width, height } = calculateAspectRatioFit(
 			image.width,
@@ -68,10 +68,19 @@ export const calcCenterBottomPosition = (canvas: HTMLCanvasElement, dimensions: 
 	return { x, y };
 };
 
-export const calcRandomPosition = (canvas: HTMLCanvasElement, dimensions: TDimension): TPosition => {
+export const calcRandomPosition = (
+	canvas: HTMLCanvasElement,
+	model: TCanvasImage,
+	exclusions: TCanvasImage[]
+): TPosition => {
 	const TOP_BARRIER = 160;
 
-	const y = Math.random() * (canvas.height - TOP_BARRIER - dimensions.height) + TOP_BARRIER;
-	const x = Math.random() * (canvas.width - dimensions.width);
+	const y = Math.random() * (canvas.height - TOP_BARRIER - model.height!) + TOP_BARRIER;
+	const x = Math.random() * (canvas.width - model.width!);
+
+	if (exclusions.some((m) => calcIsColliding(m, { ...model, x, y }))) {
+		return calcRandomPosition(canvas, model, exclusions);
+	}
+
 	return { x, y };
 };
