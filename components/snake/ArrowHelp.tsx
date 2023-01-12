@@ -1,24 +1,24 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { arrowLeftModel, arrowRightModel, arrowUpModel, arrowDownModel } from "../../data/models/frog";
+import { arrowLeftModel, arrowRightModel, arrowUpModel, arrowDownModel } from "../../data/models/snake";
 import { useCanvas } from "../../stores/CanvasStore";
-import { useFrogger } from "../../stores/FroggerStore";
+import { useSnake } from "../../stores/SnakeStore";
 import { useKeyboard } from "../../stores/KeyboardStore";
 import { TCanvasImage } from "../../typings/canvas";
 import { loadImage } from "../../utils/canvas";
-import { calcArrowsToShow, getArrowPosition } from "../../utils/frogger";
+import { calcArrowsToShow, getArrowPosition } from "../../utils/snake";
 
 export const ArrowHelp: React.FC = observer(() => {
 	const canvas = useCanvas();
 	const { history } = useKeyboard();
-	const { score } = useFrogger();
+	const { score } = useSnake();
 
 	const updateArrowModel = (model: TCanvasImage): TCanvasImage => {
-		const frog = canvas.getModel("Frog");
+		const snake = canvas.getModel("Snake");
 		const target = canvas.getModel("Target");
-		const arrowsToShow = calcArrowsToShow(frog!, target!);
+		const arrowsToShow = calcArrowsToShow(snake!, target!);
 		const hasPosition = arrowsToShow[model.name as keyof object];
-		const attributes = hasPosition ? getArrowPosition(frog!, model!) : {};
+		const attributes = hasPosition ? getArrowPosition(snake!, model!) : {};
 		return { ...model, ...attributes, hidden: !hasPosition };
 	};
 

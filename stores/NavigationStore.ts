@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 import { TMenuItemID } from "../typings/navigation";
 
 class NavigationStore {
-	activeMenuItem: TMenuItemID = TMenuItemID.Frogger;
+	activeMenuItem: TMenuItemID = TMenuItemID.Snake;
 
 	constructor() {
 		makeAutoObservable(this, {

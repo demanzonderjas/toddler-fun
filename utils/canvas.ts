@@ -1,5 +1,5 @@
 import { TCanvasImage, TDimension, TPosition } from "../typings/canvas";
-import { calcIsColliding } from "./frogger";
+import { calcIsColliding } from "./snake";
 
 export const getCenteredPositions = (canvas: HTMLCanvasElement, total: number, dimensions: TDimension) => {
 	const positions: TPosition[] = [];

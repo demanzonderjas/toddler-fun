@@ -1,9 +1,9 @@
 import { observer } from "mobx-react-lite";
-import { useFrogger } from "../../stores/FroggerStore";
-import styles from "../../styles/components/Frogger.module.scss";
+import { useSnake } from "../../stores/SnakeStore";
+import styles from "../../styles/components/Snake.module.scss";
 
 export const Score: React.FC = observer(() => {
-	const { score } = useFrogger();
+	const { score } = useSnake();
 
 	return (
 		<div className={styles.Score}>

@@ -1,25 +1,25 @@
 import { observer } from "mobx-react";
 import { useNavigation } from "../../stores/NavigationStore";
 import { TMenuItemID } from "../../typings/navigation";
-import { Frog } from "./Frog";
-import { frogger, FroggerContext } from "../../stores/FroggerStore";
+import { Snake } from "./Snake";
+import { snake, SnakeContext } from "../../stores/SnakeStore";
 import { Target } from "./Target";
 import { Score } from "./Score";
 import { ArrowHelp } from "./ArrowHelp";
 
-export const Frogger: React.FC = observer(() => {
+export const SnakeGame: React.FC = observer(() => {
 	const { activeMenuItem } = useNavigation();
 
-	if (activeMenuItem !== TMenuItemID.Frogger) {
+	if (activeMenuItem !== TMenuItemID.Snake) {
 		return null;
 	}
 
 	return (
-		<FroggerContext.Provider value={frogger}>
-			<Frog />
+		<SnakeContext.Provider value={snake}>
+			<Snake />
 			<Target />
 			<ArrowHelp />
 			<Score />
-		</FroggerContext.Provider>
+		</SnakeContext.Provider>
 	);
 });

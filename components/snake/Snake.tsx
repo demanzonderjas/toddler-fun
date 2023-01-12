@@ -1,18 +1,18 @@
 import { observer } from "mobx-react";
 import { useEffect } from "react";
-import { frogModel } from "../../data/models/frog";
+import { snakeModel } from "../../data/models/snake";
 import { useCanvas } from "../../stores/CanvasStore";
-import { useFrogger } from "../../stores/FroggerStore";
+import { useSnake } from "../../stores/SnakeStore";
 import { useKeyboard } from "../../stores/KeyboardStore";
 import { TCanvasImage } from "../../typings/canvas";
 import { calcCenterBottomPosition, calcNewModelPosition, loadImage } from "../../utils/canvas";
-import { calcIsColliding } from "../../utils/frogger";
+import { calcIsColliding } from "../../utils/snake";
 import { isArrowKey } from "../../utils/keyboard";
 
-export const Frog: React.FC = observer(() => {
+export const Snake: React.FC = observer(() => {
 	const canvas = useCanvas();
 	const { activeKey, history } = useKeyboard();
-	const { addScore } = useFrogger();
+	const { addScore } = useSnake();
 
 	const addModelToCanvas = (model: TCanvasImage) => {
 		canvas.clearModels();
@@ -21,24 +21,24 @@ export const Frog: React.FC = observer(() => {
 	};
 
 	useEffect(() => {
-		const modelIndex = canvas.getModelIndex("Frog");
-		const frog = canvas.models[modelIndex];
-		if (!isArrowKey(activeKey) || modelIndex === -1 || !frog.image) {
+		const modelIndex = canvas.getModelIndex("Snake");
+		const snake = canvas.models[modelIndex];
+		if (!isArrowKey(activeKey) || modelIndex === -1 || !snake.image) {
 			return;
 		}
 
-		const frogInNewPosition = calcNewModelPosition(frog, activeKey!);
-		canvas.replaceModel(frogInNewPosition, modelIndex);
+		const snakeInNewPosition = calcNewModelPosition(snake, activeKey!);
+		canvas.replaceModel(snakeInNewPosition, modelIndex);
 
 		const targetIndex = canvas.getModelIndex("Target");
 		const target = canvas.models[targetIndex];
-		if (calcIsColliding(frogInNewPosition, target)) {
+		if (calcIsColliding(snakeInNewPosition, target)) {
 			addScore();
 			canvas.replaceModel(
 				{
-					...frogInNewPosition,
-					width: frogInNewPosition.width! * 1.05,
-					height: frogInNewPosition.height! * 1.05,
+					...snakeInNewPosition,
+					width: snakeInNewPosition.width! * 1.05,
+					height: snakeInNewPosition.height! * 1.05,
 				},
 				modelIndex
 			);
@@ -48,7 +48,7 @@ export const Frog: React.FC = observer(() => {
 	useEffect(() => {
 		canvas.clearModels();
 		canvas.clearCanvas();
-		loadImage(frogModel, addModelToCanvas);
+		loadImage(snakeModel, addModelToCanvas);
 	}, []);
 
 	return null;

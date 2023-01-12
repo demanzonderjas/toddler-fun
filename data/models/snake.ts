@@ -1,37 +1,37 @@
 import { TCanvasImage } from "../../typings/canvas";
 
-export const frogModel: TCanvasImage = {
+export const snakeModel: TCanvasImage = {
 	src: "dictionary/mikki.jpg",
-	name: "Frog",
+	name: "Snake",
 	order: 0,
 };
 
 export const targetModel: TCanvasImage = {
-	src: "frogger/speculoos.jpg",
+	src: "snake/speculoos.jpg",
 	name: "Target",
 	order: 1,
 };
 
 export const arrowLeftModel: TCanvasImage = {
-	src: "frogger/arrow-left.png",
+	src: "snake/arrow-left.png",
 	name: "ArrowLeft",
 	order: 2,
 };
 
 export const arrowRightModel: TCanvasImage = {
-	src: "frogger/arrow-right.jpg",
+	src: "snake/arrow-right.jpg",
 	name: "ArrowRight",
 	order: 2,
 };
 
 export const arrowUpModel: TCanvasImage = {
-	src: "frogger/arrow-up.jpg",
+	src: "snake/arrow-up.jpg",
 	name: "ArrowUp",
 	order: 2,
 };
 
 export const arrowDownModel: TCanvasImage = {
-	src: "frogger/arrow-down.jpg",
+	src: "snake/arrow-down.jpg",
 	name: "ArrowDown",
 	order: 2,
 };

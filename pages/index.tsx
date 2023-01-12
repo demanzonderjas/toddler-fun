@@ -1,5 +1,5 @@
 import { Canvas } from "../components/Canvas";
-import { Frogger } from "../components/frogger/Frogger";
+import { SnakeGame } from "../components/snake/SnakeGame";
 import { LettersAndNumbers } from "../components/letters-numbers/LettersAndNumbers";
 import { Menu } from "../components/Menu";
 import { canvas, CanvasContext } from "../stores/CanvasStore";
@@ -14,7 +14,7 @@ export default function Home() {
 					<Menu />
 					<Canvas />
 					<LettersAndNumbers />
-					<Frogger />
+					<SnakeGame />
 				</CanvasContext.Provider>
 			</KeyboardContext.Provider>
 		</NavigationContext.Provider>

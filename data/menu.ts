@@ -6,7 +6,7 @@ export const menuItems: TMenuItem[] = [
 		id: TMenuItemID.LettersAndNumbers,
 	},
 	{
-		icon: "frogger.png",
-		id: TMenuItemID.Frogger,
+		icon: "snake.png",
+		id: TMenuItemID.Snake,
 	},
 ];
