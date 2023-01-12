@@ -13,24 +13,25 @@ export const ArrowHelp: React.FC = observer(() => {
 	const { history } = useKeyboard();
 	const { score } = useFrogger();
 
-	const addModelToCanvas = (model: TCanvasImage) => {
+	const updateArrowModel = (model: TCanvasImage): TCanvasImage => {
 		const frog = canvas.getModel("Frog");
 		const target = canvas.getModel("Target");
 		const arrowsToShow = calcArrowsToShow(frog!, target!);
 		const hasPosition = arrowsToShow[model.name as keyof object];
 		const attributes = hasPosition ? getArrowPosition(frog!, model!) : {};
-		canvas.addModel({ ...model, ...attributes, hidden: !hasPosition });
+		return { ...model, ...attributes, hidden: !hasPosition };
+	};
+
+	const addModelToCanvas = (model: TCanvasImage) => {
+		const updatedModel = updateArrowModel(model);
+		canvas.addModel(updatedModel);
 	};
 
 	const updateModels = () => {
-		const frog = canvas.getModel("Frog");
-		const target = canvas.getModel("Target");
-		const arrowsToShow = calcArrowsToShow(frog!, target!);
 		canvas.arrows.forEach((model: TCanvasImage) => {
 			const arrowIndex = canvas.getModelIndex(model.name);
-			const hasPosition = arrowsToShow[model.name as keyof object];
-			const attributes = hasPosition ? getArrowPosition(frog!, model!) : {};
-			canvas.replaceModel({ ...model, ...attributes, hidden: !hasPosition }, arrowIndex);
+			const updatedModel = updateArrowModel(model);
+			canvas.replaceModel(updatedModel, arrowIndex);
 		});
 	};
 

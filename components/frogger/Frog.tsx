@@ -34,6 +34,14 @@ export const Frog: React.FC = observer(() => {
 		const target = canvas.models[targetIndex];
 		if (calcIsColliding(frogInNewPosition, target)) {
 			addScore();
+			canvas.replaceModel(
+				{
+					...frogInNewPosition,
+					width: frogInNewPosition.width! * 1.05,
+					height: frogInNewPosition.height! * 1.05,
+				},
+				modelIndex
+			);
 		}
 	}, [activeKey, history.length]);
 
