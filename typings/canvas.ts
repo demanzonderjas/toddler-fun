@@ -7,6 +7,7 @@ export type TCanvasImage = {
 	x?: number;
 	y?: number;
 	order?: number;
+	hidden?: boolean;
 };
 
 export type TDimension = {

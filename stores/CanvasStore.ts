@@ -20,6 +20,7 @@ class CanvasStore {
 			resize: action.bound,
 			clearModels: action.bound,
 			replaceModel: action.bound,
+			arrows: computed,
 		});
 	}
 
@@ -28,6 +29,10 @@ class CanvasStore {
 			return null;
 		}
 		return this.canvas.getContext("2d");
+	}
+
+	get arrows() {
+		return this.models.filter((m) => /Arrow(.*)/.test(m.name));
 	}
 
 	addModel(model: TCanvasImage) {
@@ -54,8 +59,8 @@ class CanvasStore {
 		}
 		this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
 		const sorted = this.models.sort((a, b) => b.order! - a.order!);
-		sorted.forEach((model, idx) => {
-			if (model.image) {
+		sorted.forEach((model) => {
+			if (model.image && !model.hidden) {
 				this.ctx!.drawImage(model.image, model.x!, model.y!, model.width!, model.height!);
 			}
 		});
