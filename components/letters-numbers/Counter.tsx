@@ -13,9 +13,9 @@ export const Counter: React.FC = observer(() => {
 	const addModelToCanvas = (model: TCanvasImage) => {
 		canvas.clearModels();
 		const totalToAdd = activeNumber || 1;
-		const positions = getCenteredPositions(canvas.canvas!, totalToAdd, {
-			width: model.width!,
-			height: model.height!,
+		const positions = getCenteredPositions(canvas.canvas, totalToAdd, {
+			width: model.width,
+			height: model.height,
 		});
 
 		for (let i = 0; i < totalToAdd; i++) {

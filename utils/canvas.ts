@@ -50,13 +50,13 @@ export const calcNewModelPosition = (model: TCanvasImage, activeKey: string): TC
 	const MOVE_SPEED = 128;
 
 	if (activeKey === "ArrowLeft") {
-		return { ...model, x: model.x! - MOVE_SPEED };
+		return { ...model, x: model.x - MOVE_SPEED };
 	} else if (activeKey === "ArrowRight") {
-		return { ...model, x: model.x! + MOVE_SPEED };
+		return { ...model, x: model.x + MOVE_SPEED };
 	} else if (activeKey === "ArrowUp") {
-		return { ...model, y: model.y! - MOVE_SPEED };
+		return { ...model, y: model.y - MOVE_SPEED };
 	} else if (activeKey === "ArrowDown") {
-		return { ...model, y: model.y! + MOVE_SPEED };
+		return { ...model, y: model.y + MOVE_SPEED };
 	} else {
 		return model;
 	}
@@ -75,8 +75,8 @@ export const calcRandomPosition = (
 ): TPosition => {
 	const TOP_BARRIER = 160;
 
-	const y = Math.random() * (canvas.height - TOP_BARRIER - model.height!) + TOP_BARRIER;
-	const x = Math.random() * (canvas.width - model.width!);
+	const y = Math.random() * (canvas.height - TOP_BARRIER - model.height) + TOP_BARRIER;
+	const x = Math.random() * (canvas.width - model.width);
 
 	if (exclusions.some((m) => calcIsColliding(m, { ...model, x, y }))) {
 		return calcRandomPosition(canvas, model, exclusions);

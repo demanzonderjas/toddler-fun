@@ -12,7 +12,7 @@ export const Target: React.FC = observer(() => {
 
 	const addModelToCanvas = (model: TCanvasImage) => {
 		const snake = canvas.getModel("Snake");
-		const position = calcRandomPosition(canvas.canvas!, model, [snake!]);
+		const position = calcRandomPosition(canvas.canvas, model, [snake]);
 		canvas.addModel({ ...model, ...position });
 	};
 
@@ -21,7 +21,7 @@ export const Target: React.FC = observer(() => {
 			const targetIndex = canvas.getModelIndex("Target");
 			const target = canvas.models[targetIndex];
 			const snake = canvas.getModel("Snake");
-			const { x, y } = calcRandomPosition(canvas.canvas!, target, [snake!]);
+			const { x, y } = calcRandomPosition(canvas.canvas, target, [snake]);
 			canvas.replaceModel({ ...target, x, y }, targetIndex);
 		}
 	}, [score]);

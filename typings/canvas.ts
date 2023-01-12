@@ -1,12 +1,12 @@
 export type TCanvasImage = {
 	src: string;
 	name: string;
-	width?: number;
-	height?: number;
-	image?: HTMLImageElement;
-	x?: number;
-	y?: number;
-	order?: number;
+	width: number;
+	height: number;
+	image: HTMLImageElement;
+	x: number;
+	y: number;
+	order: number;
 	hidden?: boolean;
 };
 

@@ -16,7 +16,7 @@ export const Snake: React.FC = observer(() => {
 
 	const addModelToCanvas = (model: TCanvasImage) => {
 		canvas.clearModels();
-		const position = calcCenterBottomPosition(canvas.canvas!, { width: model.width!, height: model.height! });
+		const position = calcCenterBottomPosition(canvas.canvas, { width: model.width, height: model.height });
 		canvas.addModel({ ...model, ...position });
 	};
 
@@ -27,7 +27,7 @@ export const Snake: React.FC = observer(() => {
 			return;
 		}
 
-		const snakeInNewPosition = calcNewModelPosition(snake, activeKey!);
+		const snakeInNewPosition = calcNewModelPosition(snake, activeKey);
 		canvas.replaceModel(snakeInNewPosition, modelIndex);
 
 		const targetIndex = canvas.getModelIndex("Target");
@@ -37,8 +37,8 @@ export const Snake: React.FC = observer(() => {
 			canvas.replaceModel(
 				{
 					...snakeInNewPosition,
-					width: snakeInNewPosition.width! * 1.05,
-					height: snakeInNewPosition.height! * 1.05,
+					width: snakeInNewPosition.width * 1.05,
+					height: snakeInNewPosition.height * 1.05,
 				},
 				modelIndex
 			);

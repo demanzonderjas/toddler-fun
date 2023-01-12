@@ -1,10 +1,9 @@
 import { action, computed, makeAutoObservable, observable, toJS } from "mobx";
 import { createContext, useContext, useEffect } from "react";
 import { TCanvasImage, TPosition } from "../typings/canvas";
-import { calculateAspectRatioFit, getCenteredPositions } from "../utils/canvas";
 
 class CanvasStore {
-	canvas: HTMLCanvasElement | null = null;
+	canvas: HTMLCanvasElement = null;
 
 	models: TCanvasImage[] = [];
 
@@ -57,18 +56,18 @@ class CanvasStore {
 		if (!this.ctx || !this.models.length) {
 			return;
 		}
-		this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
-		const sorted = this.models.sort((a, b) => b.order! - a.order!);
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		const sorted = this.models.sort((a, b) => b.order - a.order);
 		sorted.forEach((model) => {
 			if (model.image && !model.hidden) {
-				this.ctx!.drawImage(model.image, model.x!, model.y!, model.width!, model.height!);
+				this.ctx.drawImage(model.image, model.x, model.y, model.width, model.height);
 			}
 		});
 	}
 
 	clearCanvas() {
 		if (this.ctx) {
-			this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
+			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		}
 	}
 

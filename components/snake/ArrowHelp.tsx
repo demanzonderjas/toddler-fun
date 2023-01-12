@@ -16,9 +16,9 @@ export const ArrowHelp: React.FC = observer(() => {
 	const updateArrowModel = (model: TCanvasImage): TCanvasImage => {
 		const snake = canvas.getModel("Snake");
 		const target = canvas.getModel("Target");
-		const arrowsToShow = calcArrowsToShow(snake!, target!);
+		const arrowsToShow = calcArrowsToShow(snake, target);
 		const hasPosition = arrowsToShow[model.name as keyof object];
-		const attributes = hasPosition ? getArrowPosition(snake!, model!) : {};
+		const attributes = hasPosition ? getArrowPosition(snake, model) : {};
 		return { ...model, ...attributes, hidden: !hasPosition };
 	};
 
