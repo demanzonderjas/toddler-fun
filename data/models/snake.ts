@@ -9,7 +9,7 @@ export const snakeModel: TCanvasImage = {
 export const targetModel: TCanvasImage = {
 	src: "snake/speculoos.jpg",
 	name: "Target",
-	order: 1,
+	order: 3,
 };
 
 export const arrowLeftModel: TCanvasImage = {

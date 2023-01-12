@@ -26,7 +26,6 @@ $menu-item-height: 180px;
 		img {
 			max-width: 60%;
 			max-height: 60%;
-			// filter: invert(100);
 		}
 
 		&:hover {
@@ -37,11 +36,12 @@ $menu-item-height: 180px;
 	ul {
 		margin-top: 60px;
 		li {
-			display: block;
+			display: flex;
 			padding: 10px;
 			height: $menu-item-height;
 			margin: 40px 0;
 			cursor: pointer;
+			align-items: center;
 
 			&:hover, &.active_item {
 				background-color: $tertiary;
