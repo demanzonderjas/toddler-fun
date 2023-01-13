@@ -9,4 +9,8 @@ export const menuItems: TMenuItem[] = [
 		icon: "arrow-icons.jpg",
 		id: TMenuItemID.Snake,
 	},
+	{
+		icon: "keyboard.webp",
+		id: TMenuItemID.TypeIt,
+	},
 ];

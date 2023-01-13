@@ -5,6 +5,8 @@ import { Menu } from "../components/Menu";
 import { canvas, CanvasContext } from "../stores/CanvasStore";
 import { keyboard, KeyboardContext } from "../stores/KeyboardStore";
 import { nav, NavigationContext } from "../stores/NavigationStore";
+import { typeIt, TypeItContext } from "../stores/TypeItStore";
+import { TypeIt } from "../components/type-it/TypeIt";
 
 export default function Home() {
 	return (
@@ -15,6 +17,9 @@ export default function Home() {
 					<Canvas />
 					<LettersAndNumbers />
 					<SnakeGame />
+					<TypeItContext.Provider value={typeIt}>
+						<TypeIt />
+					</TypeItContext.Provider>
 				</CanvasContext.Provider>
 			</KeyboardContext.Provider>
 		</NavigationContext.Provider>

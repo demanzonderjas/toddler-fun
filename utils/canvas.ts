@@ -46,17 +46,21 @@ export const loadImage = (model: TCanvasImage, callback: Function, MAX_IMAGE_SIZ
 	image.src = model.src;
 };
 
-export const calcNewModelPosition = (model: TCanvasImage, activeKey: string): TCanvasImage => {
+export const calcNewModelPosition = (
+	model: TCanvasImage,
+	activeKey: string,
+	canvas: HTMLCanvasElement
+): TCanvasImage => {
 	const MOVE_SPEED = 128;
 
 	if (activeKey === "ArrowLeft") {
-		return { ...model, x: model.x - MOVE_SPEED };
+		return { ...model, x: Math.max(model.x - MOVE_SPEED, 0) };
 	} else if (activeKey === "ArrowRight") {
-		return { ...model, x: model.x + MOVE_SPEED };
+		return { ...model, x: Math.min(model.x + MOVE_SPEED, canvas.width - model.width) };
 	} else if (activeKey === "ArrowUp") {
-		return { ...model, y: model.y - MOVE_SPEED };
+		return { ...model, y: Math.max(model.y - MOVE_SPEED, 0) };
 	} else if (activeKey === "ArrowDown") {
-		return { ...model, y: model.y + MOVE_SPEED };
+		return { ...model, y: Math.min(model.y + MOVE_SPEED, canvas.height - model.height) };
 	} else {
 		return model;
 	}

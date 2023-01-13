@@ -27,7 +27,7 @@ export const Snake: React.FC = observer(() => {
 			return;
 		}
 
-		const snakeInNewPosition = calcNewModelPosition(snake, activeKey);
+		const snakeInNewPosition = calcNewModelPosition(snake, activeKey, canvas.canvas);
 		canvas.replaceModel(snakeInNewPosition, modelIndex);
 
 		const targetIndex = canvas.getModelIndex("Target");
