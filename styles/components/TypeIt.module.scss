@@ -55,8 +55,10 @@
 		align-items: flex-end;
 		justify-content: right;
 		span {
-			font-size: 30px;
-			padding: 5px;
+			font-size: 32px;
+			padding: 5px 10px;
+			background-color: $secondary;
+			color: white;
 		}
 	}
 

@@ -13,9 +13,11 @@ export const Input: React.FC<{ char: string; index: number }> = observer(({ char
 			<div className={styles.placeholder}>
 				<span>{char}</span>
 			</div>
-			<div className={styles.value}>
-				<span>{isActive && activeInput}</span>
-			</div>
+			{isActive && activeInput && (
+				<div className={styles.value}>
+					<span>{activeInput}</span>
+				</div>
+			)}
 		</div>
 	);
 });
