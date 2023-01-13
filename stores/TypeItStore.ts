@@ -2,9 +2,10 @@ import { action, computed, makeAutoObservable, observable } from "mobx";
 import { createContext, useContext } from "react";
 import { wordListToType } from "../data/typeIt";
 import { isKeyAlphabetCharacter, isKeyBackspace } from "../utils/keyboard";
+import shuffle from "../utils/shuffle";
 
 class TypeItStore {
-	wordList: string[] = wordListToType;
+	wordList: string[] = [];
 
 	activeWordIndex: number = 0;
 
@@ -24,6 +25,7 @@ class TypeItStore {
 			correctCharsLength: observable,
 			currentChar: computed,
 			correctWords: computed,
+			shuffle: action.bound,
 		});
 	}
 
@@ -37,6 +39,10 @@ class TypeItStore {
 
 	get currentChar() {
 		return this.activeWord[this.correctCharsLength];
+	}
+
+	shuffle() {
+		this.wordList = shuffle([...wordListToType]);
 	}
 
 	handleLatestInput(activeKey: string) {
