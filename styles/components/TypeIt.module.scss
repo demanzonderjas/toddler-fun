@@ -69,13 +69,13 @@
 
 .CorrectWords {
 	position: absolute;
-	bottom: 10px;
+	bottom: 0px;
 	left: 10px;
 	transform: scale(0.25);
 	transform-origin: bottom left;
 
 	.word {
 		display: flex;
-		margin: 50px 0;
+		margin: 30px 0;
 	}
 }

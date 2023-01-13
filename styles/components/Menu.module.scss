@@ -41,6 +41,7 @@ $menu-item-height: 180px;
 			margin: 40px 0;
 			cursor: pointer;
 			align-items: center;
+			justify-content: center;
 
 			&:hover, &.active_item {
 				background-color: $tertiary;

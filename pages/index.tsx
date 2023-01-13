@@ -17,9 +17,7 @@ export default function Home() {
 					<Canvas />
 					<LettersAndNumbers />
 					<SnakeGame />
-					<TypeItContext.Provider value={typeIt}>
-						<TypeIt />
-					</TypeItContext.Provider>
+					<TypeIt />
 				</CanvasContext.Provider>
 			</KeyboardContext.Provider>
 		</NavigationContext.Provider>
