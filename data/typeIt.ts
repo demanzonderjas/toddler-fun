@@ -1,1 +1,1 @@
-export const wordListToType: string[] = ["Mikki", "Papa", "Mama", "Guus", "Lotte", "Siem", "Nina", "Opa", "Oma"];
+export const wordListToType: string[] = ["Mikki", "Papa", "Mama", "Siem", "Nina", "Appel", "Banaan", "Paard", "PJ", "Popje", "Bert", "Ernie", "Boetje"];

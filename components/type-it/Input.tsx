@@ -13,7 +13,7 @@ export const Input: React.FC<{ char: string; index: number }> = observer(({ char
 			<div className={styles.placeholder}>
 				<span>{char}</span>
 			</div>
-			{isActive && activeInput && (
+			{isActive && (
 				<div className={styles.value}>
 					<span>{activeInput}</span>
 				</div>

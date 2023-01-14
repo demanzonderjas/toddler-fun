@@ -57,8 +57,11 @@
 		span {
 			font-size: 32px;
 			padding: 5px 10px;
+			min-width: 50px;
+			min-height: 50px;
 			background-color: $secondary;
 			color: white;
+			text-align: center;
 		}
 	}
 
